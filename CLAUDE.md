@@ -11,7 +11,7 @@ This is a single-file, self-contained personal website with no external dependen
 **Single-File Structure**: All HTML, CSS, and JavaScript are contained in `index.html`. This design choice prioritizes simplicity and portability.
 
 **Section-Based Navigation**: The site uses a hash-based routing system where:
-- Each content section has a unique `id` (home, blog, cv, readings, findings)
+- Each content section has a unique `id` (home, blog, cv, projects)
 - Navigation uses anchor links (`#home`, `#blog`, etc.)
 - JavaScript toggles `.active` class to show/hide sections
 - CSS `:target` provides fallback for no-JS environments

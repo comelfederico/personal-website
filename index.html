@@ -15,7 +15,7 @@
 
     TO EDIT CONTENT:
     - Scroll down to the <main> section
-    - Each section has an id (home, blog, cv, readings, findings)
+    - Each section has an id (home, blog, cv, projects)
     - Edit the content within each <section> tag
     - Keep the section IDs unchanged to preserve navigation
     - Use simple HTML for formatting (p, ul, ol, h3, em, strong, a)
@@ -76,6 +76,37 @@
             color: #000;
             text-decoration: none;
             outline: none;
+        }
+
+        /* Article title links - plain text appearance */
+        .article-title-link {
+            color: #000;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .article-title-link:hover,
+        .article-title-link:focus {
+            color: #000;
+            text-decoration: none;
+            outline: none;
+        }
+
+        /* Blog views - list view shown by default, article view hidden */
+        .blog-list-view {
+            display: block;
+        }
+
+        .blog-list-view.hidden {
+            display: none;
+        }
+
+        .blog-article-view {
+            display: none;
+        }
+
+        .blog-article-view.active {
+            display: block;
         }
 
         /* Navigation - plain text links */
@@ -211,9 +242,8 @@
         <nav role="navigation" aria-label="Main navigation">
             <a href="#home" id="nav-home">home</a>
             <a href="#blog" id="nav-blog">blog</a>
+            <a href="#projects" id="nav-projects">projects</a>
             <a href="public/Federico_Comel_CV.pdf" id="nav-cv" target="_blank">cv</a>
-            <a href="#readings" id="nav-readings">readings</a>
-            <a href="#findings" id="nav-findings">findings</a>
         </nav>
     </header>
 
@@ -235,32 +265,28 @@
             </p>
             <ul>
                 <li><strong>Blog</strong> — occasional writings on topics I find interesting</li>
+                <li><strong>Projects</strong> — work and side projects I've built</li>
                 <li><strong>CV</strong> — professional background and experience</li>
-                <li><strong>Readings</strong> — notes and thoughts on books and articles</li>
-                <li><strong>Findings</strong> — collected observations and discoveries</li>
             </ul>
         </section>
 
         <!-- Blog Section -->
         <section id="blog">
-            <h1>Blog</h1>
-            <p>
-                This is where I write about software, design, ideas, and whatever else
-                seems worth sharing.
-            </p>
-
-            <h2>Recent Posts</h2>
-            <p><em>No posts yet. Check back soon.</em></p>
-
-            <!-- Example post structure (uncomment and edit to add real posts):
-            <article>
-                <h3>Post Title Goes Here</h3>
-                <p><em>January 1, 2025</em></p>
-                <p>
-                    Post content goes here. You can use paragraphs, lists, and basic formatting.
+            <!-- List View - default -->
+            <div class="blog-list-view">
+                <h1>federico's notebook</h1>
+                <p class="article-title-link" onclick="showArticle('article-moving-abroad')">
+                    October 20, 2025 &nbsp;&nbsp;&nbsp;&nbsp;My personal blueprint on how (not) to move abroad for the first time
                 </p>
-            </article>
-            -->
+            </div>
+
+            <!-- Article View - hidden by default -->
+            <div id="article-moving-abroad" class="blog-article-view">
+                <h1>My personal blueprint on how (not) to move abroad for the first time</h1>
+                <p>
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                </p>
+            </div>
         </section>
 
         <!-- CV Section -->
@@ -289,55 +315,42 @@
             -->
         </section>
 
-        <!-- Readings Section -->
-        <section id="readings">
-            <h1>Readings</h1>
+        <!-- Projects Section -->
+        <section id="projects">
+            <h1>Projects</h1>
             <p>
-                Notes, highlights, and thoughts on books, articles, and papers I've read.
+                A collection of work and side projects I've built.
             </p>
 
-            <h2>Current Reading</h2>
-            <p><em>Add what you're currently reading here.</em></p>
-
-            <h2>Finished</h2>
-            <p><em>Add completed readings and your thoughts here.</em></p>
-
-            <!-- Example structure:
-            <h3>Book Title by Author Name</h3>
-            <p>
-                Brief summary or key takeaways from the book.
-            </p>
-            <ul>
-                <li>Notable quote or idea</li>
-                <li>Another interesting point</li>
-            </ul>
-            -->
-        </section>
-
-        <!-- Findings Section -->
-        <section id="findings">
-            <h1>Findings</h1>
-            <p>
-                A collection of interesting things I've discovered—tools, techniques,
-                observations, or anything worth documenting.
-            </p>
-
-            <h2>Recent Findings</h2>
-            <p><em>Add your findings here.</em></p>
-
-            <!-- Example structure:
-            <h3>Finding Title</h3>
-            <p><em>Date</em></p>
-            <p>
-                Description of what you found and why it's interesting or useful.
-            </p>
-            -->
+            <p><em>Projects coming soon.</em></p>
         </section>
     </main>
 
     <script>
         // Minimal vanilla JavaScript for navigation and deep-linking
         // Gracefully degrades - CSS :target provides fallback
+
+        // Function to show article view and hide list view
+        function showArticle(articleId) {
+            // Change URL hash to trigger navigation
+            // This creates a browser history entry for proper back button behavior
+            window.location.hash = 'blog/' + articleId;
+        }
+
+        // Function to show list view and hide article view
+        function showBlogList() {
+            // Show list view
+            const listView = document.querySelector('.blog-list-view');
+            if (listView) {
+                listView.classList.remove('hidden');
+            }
+
+            // Hide all article views
+            const articleViews = document.querySelectorAll('.blog-article-view');
+            articleViews.forEach(article => {
+                article.classList.remove('active');
+            });
+        }
 
         (function() {
             'use strict';
@@ -348,8 +361,19 @@
 
             // Function to show a specific section
             function showSection(hash) {
-                // Default to #home if no hash or invalid hash
-                const targetId = hash.slice(1) || 'home';
+                // Remove # from hash
+                const path = hash.slice(1) || 'home';
+
+                // Check if this is a blog article route (blog/article-id)
+                let targetId = path;
+                let articleId = null;
+
+                if (path.startsWith('blog/')) {
+                    // Extract article ID from blog/article-id
+                    targetId = 'blog';
+                    articleId = path.substring(5); // Remove 'blog/' prefix
+                }
+
                 const targetSection = document.getElementById(targetId);
 
                 // Hide all sections
@@ -360,6 +384,25 @@
                 // Show target section if it exists
                 if (targetSection) {
                     targetSection.classList.add('active');
+                }
+
+                // Handle blog section views
+                if (targetId === 'blog') {
+                    if (articleId) {
+                        // Show specific article view
+                        showBlogList(); // First reset to clean state
+                        const listView = document.querySelector('.blog-list-view');
+                        if (listView) {
+                            listView.classList.add('hidden');
+                        }
+                        const article = document.getElementById(articleId);
+                        if (article) {
+                            article.classList.add('active');
+                        }
+                    } else {
+                        // Show list view
+                        showBlogList();
+                    }
                 }
 
                 // Update active state on nav links
