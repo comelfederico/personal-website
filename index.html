@@ -194,6 +194,7 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 0;
             margin-top: 20px;
+            overflow: visible;
         }
 
         /* Project views - grid view shown by default, detail view hidden */
@@ -215,7 +216,6 @@
 
         .project-item {
             aspect-ratio: 1;
-            overflow: hidden;
             position: relative;
         }
 
@@ -282,8 +282,10 @@
             opacity: 0;
             pointer-events: none;
             position: absolute;
-            right: calc(100% + 20px);
+            left: auto;
+            right: calc(100% + 40px);
             top: 50%;
+            bottom: auto;
             transform: translateY(-50%);
             padding: 0;
             display: flex;
@@ -291,18 +293,23 @@
             align-items: flex-end;
             justify-content: center;
             transition: opacity 0.3s ease;
+            z-index: 100;
         }
 
         .project-item .project-title,
         .project-item .project-year {
             white-space: nowrap;
             font-size: 13px;
-            color: #555;
+            color: #333;
             font-style: italic;
         }
 
+        .project-item .project-title {
+            font-weight: bold;
+        }
+
         .project-item .project-year {
-            margin-top: 5px;
+            margin-top: 0px;
         }
 
         .project-item:hover {
@@ -323,7 +330,7 @@
         }
 
         .project-grid:has(.project-item:hover) .project-item:not(:hover) img {
-            opacity: 0.3;
+            opacity: 0.2;
         }
 
         .project-placeholder {
@@ -630,7 +637,7 @@
                             <img src="public/projects/solvigoab.jpg" alt="Solvigo">
                         </a>
                         <div class="project-overlay">
-                            <div class="project-title">Solvigo AI</div>
+                            <div class="project-title">Solvigo AI,</div>
                             <div class="project-year">2025</div>
                         </div>
                     </div>
@@ -639,7 +646,7 @@
                             <img src="public/projects/ais.png" alt="AI Society">
                         </a>
                         <div class="project-overlay">
-                            <div class="project-title">KTH AI Society</div>
+                            <div class="project-title">KTH AI Society,</div>
                             <div class="project-year">2025</div>
                         </div>
                     </div>
@@ -648,17 +655,8 @@
                             <img src="public/projects/uis logo.png" alt="UIS">
                         </a>
                         <div class="project-overlay">
-                            <div class="project-title">United Italian Society</div>
+                            <div class="project-title">United Italian Society,</div>
                             <div class="project-year">2025</div>
-                        </div>
-                    </div>
-                    <div class="project-item">
-                        <a href="https://www.jethr.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
-                            <img src="public/projects/jethr.png" alt="Jet HR">
-                        </a>
-                        <div class="project-overlay">
-                            <div class="project-title">Jet HR</div>
-                            <div class="project-year">2024</div>
                         </div>
                     </div>
                     <div class="project-item">
@@ -666,7 +664,7 @@
                             <img src="public/projects/blog.jpeg" alt="Blog">
                         </a>
                         <div class="project-overlay">
-                            <div class="project-title">notebook</div>
+                            <div class="project-title">notebook,</div>
                             <div class="project-year">2025</div>
                         </div>
                     </div>
@@ -675,8 +673,17 @@
                             <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
                         </a>
                         <div class="project-overlay">
-                            <div class="project-title">Solvo</div>
+                            <div class="project-title">Solvo,</div>
                             <div class="project-year">2025</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="https://www.jethr.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/jethr.png" alt="Jet HR">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">Jet HR,</div>
+                            <div class="project-year">2024</div>
                         </div>
                     </div>
                 </div>
