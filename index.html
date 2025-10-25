@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Federico Comel</title>
+    <link rel="icon" type="image/png" href="public/icon web.png">
 
     <!--
     ============================================================================
@@ -37,12 +38,13 @@
         }
 
         body {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 16px;
             line-height: 1.6;
             color: #000;
-            background: #fff;
+            background: #EDECEB;
             padding-top: 60px; /* Space for fixed header */
+            padding-bottom: 60px; /* Space for fixed footer */
         }
 
         /* Fixed header with title and navigation */
@@ -51,7 +53,7 @@
             top: 0;
             left: 0;
             right: 0;
-            background: #fff;
+            background: #EDECEB;
             padding: 15px 20px;
             z-index: 100;
             display: flex;
@@ -62,7 +64,7 @@
 
         /* Site title - always visible in top-left */
         .site-title {
-            font-family: 'Times New Roman', Times, serif;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
             font-size: 18px;
             font-weight: bold;
             letter-spacing: 0.5px;
@@ -109,10 +111,112 @@
             display: block;
         }
 
+        /* Social media links */
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            color: #000;
+            text-decoration: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .social-links a:hover {
+            opacity: 0.6;
+        }
+
+        .social-links svg {
+            width: 20px;
+            height: 20px;
+            fill: #000;
+        }
+
+        /* Bio content wrapper */
+        .bio-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Bio links - plain text appearance, bold and italic */
+        .bio-link {
+            color: #000;
+            text-decoration: underline;
+            font-style: italic;
+        }
+
+        .bio-link:hover,
+        .bio-link:focus {
+            color: #000;
+            text-decoration: none;
+            outline: none;
+        }
+
+        /* Article images */
+        .article-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 30px auto;
+        }
+
+        /* Image captions */
+        .image-caption {
+            font-style: italic;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+            margin-top: -20px;
+            margin-bottom: 20px;
+        }
+
+        /* Article metadata (date and page views) */
+        .article-meta {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+
+        /* Blog list view date styling */
+        .blog-list-date {
+            font-style: italic;
+            color: #666;
+        }
+
+        /* Project grid - 3x3 photo collage */
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 0;
+            margin-top: 20px;
+        }
+
+        .project-item {
+            aspect-ratio: 1;
+            overflow: hidden;
+        }
+
+        .project-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.9;
+        }
+
+        .project-placeholder {
+            aspect-ratio: 1;
+            background: #d3d3d3;
+        }
+
         /* Navigation - plain text links */
         nav {
-            font-family: Arial, Helvetica, sans-serif;
-            font-size: 14px;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
         }
 
         nav a {
@@ -126,12 +230,41 @@
         nav a:hover,
         nav a:focus {
             text-decoration: underline;
-            outline: 1px dotted #000;
-            outline-offset: 2px;
         }
 
         nav a.active {
             border-bottom: 1px solid #000;
+        }
+
+        /* Fixed footer */
+        footer {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: #EDECEB;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            font-size: 16px;
+        }
+
+        footer .footer-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        footer a {
+            color: #000;
+            text-decoration: none;
+            transition: text-decoration 0.2s ease;
+        }
+
+        footer a:hover,
+        footer a:focus {
+            text-decoration: underline;
         }
 
         /* Main content area */
@@ -145,6 +278,7 @@
         section {
             display: none;
             animation: fadeIn 0.3s ease-in;
+            scroll-margin-top: 60px;
         }
 
         section.active {
@@ -158,10 +292,20 @@
 
         /* Section headings */
         h1 {
-            font-size: 32px;
-            font-weight: normal;
+            font-size: 24px;
+            font-weight: bold;
             margin-bottom: 30px;
             padding-bottom: 10px;
+        }
+
+        /* Home section title - closer to content */
+        #home h1 {
+            margin-bottom: 10px;
+        }
+
+        /* Article view title - closer to date */
+        .blog-article-view h1 {
+            margin-bottom: 5px;
         }
 
         h2 {
@@ -217,7 +361,7 @@
             }
 
             nav {
-                font-size: 13px;
+                font-size: 16px;
             }
 
             nav a {
@@ -225,7 +369,7 @@
             }
 
             h1 {
-                font-size: 26px;
+                font-size: 20px;
             }
         }
 
@@ -238,7 +382,6 @@
 <body>
     <!-- Fixed header with site title and navigation -->
     <header>
-        <a href="#home" class="site-title">Federico Comel</a>
         <nav role="navigation" aria-label="Main navigation">
             <a href="#home" id="nav-home">home</a>
             <a href="#blog" id="nav-blog">blog</a>
@@ -251,23 +394,19 @@
     <main role="main">
         <!-- Home Section -->
         <section id="home" class="active">
-            <h1>Home</h1>
+            <h1>About me</h1>
             <p>
-                Welcome to my personal website. I'm Federico Comel, and this is a minimal space
-                for sharing my thoughts, work, and interests.
+                I'm Federico, born and raised in Cremona and trained between <a href="https://www.polimi.it/en/education/laurea-programmes/programme-detail/management-and-production-engineering" class="bio-link" target="_blank" rel="noopener noreferrer">Polimi</a> and currently <a href="https://www.kth.se/en/studies/master/technology-based-entrepreneurship/msc-technology-based-entrepreneurship-1.1177106" class="bio-link" target="_blank" rel="noopener noreferrer">KTH</a>.
             </p>
             <p>
-                This site is deliberately simple—no distractions, no unnecessary design elements.
-                Just text, structure, and content.
+                I've worked on things from AI-driven efficiency tools at <a href="https://solvigo.se/" class="bio-link" target="_blank" rel="noopener noreferrer">Solvigo</a> to operational optimization at <a href="https://www.jethr.com/" class="bio-link" target="_blank" rel="noopener noreferrer">Jet HR</a>, always with the goal in mind to make systems (and people) work smarter.
             </p>
             <p>
-                Use the navigation above to explore different sections:
+                When I'm not organizing my Notion, studying, or working on some side projects, you'll probably find me cooking something unreasonably complex, running, cycling, or trying to learn how to swim properly for the Ironman.
             </p>
-            <ul>
-                <li><strong>Blog</strong> — occasional writings on topics I find interesting</li>
-                <li><strong>Projects</strong> — work and side projects I've built</li>
-                <li><strong>CV</strong> — professional background and experience</li>
-            </ul>
+            <p>
+                I don't think there's much left to say, you've got my LinkedIn and CV (and Strava) anyway.
+            </p>
         </section>
 
         <!-- Blog Section -->
@@ -276,15 +415,56 @@
             <div class="blog-list-view">
                 <h1>federico's notebook</h1>
                 <p class="article-title-link" onclick="showArticle('article-moving-abroad')">
-                    October 20, 2025 &nbsp;&nbsp;&nbsp;&nbsp;My personal blueprint on how (not) to move abroad for the first time
+                    <span class="blog-list-date">October 20, 2025</span> &nbsp;&nbsp;&nbsp;&nbsp;My personal blueprint on how (not) to move abroad for the first time
                 </p>
             </div>
 
             <!-- Article View - hidden by default -->
             <div id="article-moving-abroad" class="blog-article-view">
                 <h1>My personal blueprint on how (not) to move abroad for the first time</h1>
+                <div class="article-meta">
+                    October 20, 2025 • <span id="page-views-article-moving-abroad">0</span> views
+                </div>
                 <p>
-                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+                    Cremona used to be home. For those who don't know it, it's a small city in the northern part of Italy, not far from Milan, something I've repeated so many times lately that it feels like part of my introduction now.
+                </p>
+                <p>
+                    After spending 22 years in the same place, you almost reach a point where moving abroad feels like the only logical next step, a way to breathe, to get some fresh air.
+                </p>
+                <p>
+                    And from the outside, it looks simple. You think that once you finally do it, it'll be a walk in the park.
+                </p>
+                <p>
+                    I've always liked to come prepared for new things. Whether it's a new class, a new sport (that's how I justify spending all my savings on new gear), or just anything unknown. But this time, despite all my good intentions, I somehow landed in Stockholm two months ago full of naive enthusiasm.
+                </p>
+                <p>
+                    I was at my friend's place (yea, he made the same choice to move to Sweden, just a few weeks before me, and be prepared, there's also another one who did), sitting on his couch, actually my bed for the first month, still in my travel clothes, my suitcase untouched beside me, when one thought crossed my mind: what mess did I just get myself into?
+                </p>
+                <img src="public/sofa.webp" alt="A couch in an apartment" class="article-image">
+                <p class="image-caption">The couch I slept on for the first month, the same one that witnessed my first breakdown.</p>
+                <p>
+                    How was that even possible? Just a week earlier, I was the one complaining about my hometown, desperate to leave, to finally be independent. Wasn't this exactly what I wanted? How could I feel so out of place, so unsure, now that I had it?
+                </p>
+                <p>
+                    There have been moments in my life when I've had to stop, take a step back, and breathe. Situations where I felt so uncomfortable that the only thing I wanted was to run away, and I actually did sometimes. That's exactly what scared me the most, the idea of buying a return ticket to Italy and not even giving myself the chance to really try living this experience.
+                </p>
+                <p>
+                    It felt surreal at first and my brain had to switch to survival mode. I realised that if I kept resisting everything that felt off, I'd never settle in. So I tried to stop labeling every strange, lonely, or heavy feeling as something negative. Instead, I started to just let them exist. I began to look at them with a bit more patience and started accepting their presence rather than immediately fighting back.
+                </p>
+                <p>
+                    I also tried to let go of the need, and the quiet arrogance, of wanting to keep everything under control, even my emotions. I started allowing myself to feel anger for feeling this way, nostalgia for what was left behind, and the weight of loneliness in certain moments. And for once, I didn't rush to cover it up with quick fixes or pretending.
+                </p>
+                <p>
+                    All of this translated into long walks in the woods, thinking a lot by myself and feeling just a little less lost with every walk.
+                </p>
+                <p>
+                    Some things simply need time and ask for patience. The key was not forcing clarity, but to let the meaning behind unfold on its own, day by day.
+                </p>
+                <p>
+                    To conclude, I believe these two months have taught me that every day stands on its own, that you make it through by taking one step at a time, that Swedish is incredibly hard and I'll probably never learn it, and that even in Scandinavia, the metro runs late sometimes.
+                </p>
+                <p>
+                    If you ever find yourself facing that same unbreakable wall, I hope this makes it feel a little less scary.
                 </p>
             </div>
         </section>
@@ -318,17 +498,52 @@
         <!-- Projects Section -->
         <section id="projects">
             <h1>Projects</h1>
-            <p>
-                A collection of work and side projects I've built.
-            </p>
-
-            <p><em>Projects coming soon.</em></p>
+            <div class="project-grid">
+                <div class="project-item">
+                    <img src="public/projects/ai society.png" alt="AI Society">
+                </div>
+                <div class="project-item">
+                    <img src="public/projects/uis logo.png" alt="UIS">
+                </div>
+                <div class="project-item">
+                    <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                </div>
+            </div>
         </section>
     </main>
+
+    <footer>
+        <div>© 2025 Federico Comel</div>
+        <div class="footer-links">
+            <a href="https://www.linkedin.com/in/federico-comel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            <a href="mailto:federicocomel1@gmail.com">Email</a>
+            <a href="https://www.strava.com/athletes/134502515" target="_blank" rel="noopener noreferrer">Strava</a>
+        </div>
+    </footer>
 
     <script>
         // Minimal vanilla JavaScript for navigation and deep-linking
         // Gracefully degrades - CSS :target provides fallback
+
+        // Function to update page views for an article
+        function updatePageViews(articleId) {
+            const storageKey = `pageViews-${articleId}`;
+
+            // Get current count from localStorage (default to 0 if not found)
+            let currentCount = parseInt(localStorage.getItem(storageKey) || '0', 10);
+
+            // Increment the count
+            currentCount += 1;
+
+            // Save back to localStorage
+            localStorage.setItem(storageKey, currentCount.toString());
+
+            // Update the display
+            const viewsElement = document.getElementById(`page-views-${articleId}`);
+            if (viewsElement) {
+                viewsElement.textContent = currentCount;
+            }
+        }
 
         // Function to show article view and hide list view
         function showArticle(articleId) {
@@ -399,6 +614,8 @@
                         if (article) {
                             article.classList.add('active');
                         }
+                        // Update page views for this article
+                        updatePageViews(articleId);
                     } else {
                         // Show list view
                         showBlogList();
