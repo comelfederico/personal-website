@@ -199,13 +199,48 @@
         .project-item {
             aspect-ratio: 1;
             overflow: hidden;
+            position: relative;
         }
 
         .project-item img {
+            display: block;
             width: 100%;
             height: 100%;
             object-fit: cover;
+            object-position: center;
             opacity: 0.9;
+        }
+
+        .project-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            pointer-events: none;
+        }
+
+        .project-title {
+            font-size: 24px;
+            color: #999;
+            font-weight: normal;
+            transition: transform 0.3s ease;
+        }
+
+        .project-year {
+            font-size: 14px;
+            color: #999;
+            margin-top: 5px;
+            transition: transform 0.3s ease;
+        }
+
+        .project-item:hover .project-title,
+        .project-item:hover .project-year {
+            transform: scale(1.15);
         }
 
         .project-placeholder {
@@ -223,8 +258,7 @@
             color: #000;
             text-decoration: none;
             margin-right: 15px;
-            border-bottom: 1px solid transparent;
-            transition: border-bottom 0.2s ease;
+            transition: text-decoration 0.2s ease;
         }
 
         nav a:hover,
@@ -233,7 +267,7 @@
         }
 
         nav a.active {
-            border-bottom: 1px solid #000;
+            text-decoration: underline;
         }
 
         /* Fixed footer */
@@ -272,22 +306,24 @@
             max-width: 800px;
             margin: 0 auto;
             padding: 40px 20px;
+            position: relative;
         }
 
         /* Sections - hidden by default, shown when active */
         section {
-            display: none;
-            animation: fadeIn 0.3s ease-in;
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.07s ease-in-out, visibility 0.07s ease-in-out;
             scroll-margin-top: 60px;
         }
 
         section.active {
-            display: block;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            opacity: 1;
+            visibility: visible;
         }
 
         /* Section headings */
@@ -301,6 +337,12 @@
         /* Home section title - closer to content */
         #home h1 {
             margin-bottom: 10px;
+        }
+
+        /* About me section - narrower text block */
+        #home h1,
+        #home p {
+            max-width: 500px;
         }
 
         /* Article view title - closer to date */
@@ -500,13 +542,46 @@
             <h1>Projects</h1>
             <div class="project-grid">
                 <div class="project-item">
-                    <img src="public/projects/ai society.png" alt="AI Society">
+                    <img src="public/projects/solvigoab.jpg" alt="Solvigo">
+                    <div class="project-overlay">
+                        <div class="project-title">Solvigo AI</div>
+                        <div class="project-year">2025</div>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <img src="public/projects/ais.png" alt="AI Society">
+                    <div class="project-overlay">
+                        <div class="project-title">KTH AI Society</div>
+                        <div class="project-year">2025</div>
+                    </div>
                 </div>
                 <div class="project-item">
                     <img src="public/projects/uis logo.png" alt="UIS">
+                    <div class="project-overlay">
+                        <div class="project-title">United Italian Society</div>
+                        <div class="project-year">2025</div>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <img src="public/projects/jethr.png" alt="Jet HR">
+                    <div class="project-overlay">
+                        <div class="project-title">Jet HR</div>
+                        <div class="project-year">2024</div>
+                    </div>
+                </div>
+                <div class="project-item">
+                    <img src="public/projects/blog.jpeg" alt="Blog">
+                    <div class="project-overlay">
+                        <div class="project-title">notebook</div>
+                        <div class="project-year">2025</div>
+                    </div>
                 </div>
                 <div class="project-item">
                     <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                    <div class="project-overlay">
+                        <div class="project-title">Solvo</div>
+                        <div class="project-year">2025</div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -591,15 +666,17 @@
 
                 const targetSection = document.getElementById(targetId);
 
-                // Hide all sections
-                sections.forEach(section => {
-                    section.classList.remove('active');
-                });
-
-                // Show target section if it exists
+                // Show target section first (starts fade-in)
                 if (targetSection) {
                     targetSection.classList.add('active');
                 }
+
+                // Then hide all other sections (starts fade-out), creating cross-fade
+                sections.forEach(section => {
+                    if (section !== targetSection) {
+                        section.classList.remove('active');
+                    }
+                });
 
                 // Handle blog section views
                 if (targetId === 'blog') {
