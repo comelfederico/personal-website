@@ -196,6 +196,23 @@
             margin-top: 20px;
         }
 
+        /* Project views - grid view shown by default, detail view hidden */
+        .project-grid-view {
+            display: block;
+        }
+
+        .project-grid-view.hidden {
+            display: none;
+        }
+
+        .project-detail-view {
+            display: none;
+        }
+
+        .project-detail-view.active {
+            display: block;
+        }
+
         .project-item {
             aspect-ratio: 1;
             overflow: hidden;
@@ -208,7 +225,8 @@
             height: 100%;
             object-fit: cover;
             object-position: center;
-            opacity: 0.9;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
         }
 
         .project-overlay {
@@ -219,28 +237,93 @@
             bottom: 0;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            pointer-events: none;
+            justify-content: flex-start;
+            align-items: flex-start;
+            padding: 10px;
+        }
+
+        .project-link {
+            color: inherit;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: flex-start;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-link:hover,
+        .project-link:focus {
+            color: inherit;
+            text-decoration: none;
+            outline: none;
         }
 
         .project-title {
-            font-size: 24px;
-            color: #999;
-            font-weight: normal;
-            transition: transform 0.3s ease;
-        }
-
-        .project-year {
             font-size: 14px;
-            color: #999;
-            margin-top: 5px;
-            transition: transform 0.3s ease;
+            color: #666;
+            font-weight: normal;
+            font-style: italic;
         }
 
-        .project-item:hover .project-title,
-        .project-item:hover .project-year {
-            transform: scale(1.15);
+        /* Complex hover animation for all projects */
+        .project-image-link {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .project-item {
+            transition: transform 0.3s ease, z-index 0s;
+        }
+
+        .project-item .project-overlay {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            right: calc(100% + 20px);
+            top: 50%;
+            transform: translateY(-50%);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+        }
+
+        .project-item .project-title,
+        .project-item .project-year {
+            white-space: nowrap;
+            font-size: 13px;
+            color: #555;
+            font-style: italic;
+        }
+
+        .project-item .project-year {
+            margin-top: 5px;
+        }
+
+        .project-item:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-item:hover .project-title {
+            transform: none;
+        }
+
+        .project-item:hover img {
+            opacity: 0.9;
+        }
+
+        .project-grid:has(.project-item:hover) .project-item:not(:hover) img {
+            opacity: 0.3;
         }
 
         .project-placeholder {
@@ -539,50 +622,67 @@
 
         <!-- Projects Section -->
         <section id="projects">
-            <h1>Projects</h1>
-            <div class="project-grid">
-                <div class="project-item">
-                    <img src="public/projects/solvigoab.jpg" alt="Solvigo">
-                    <div class="project-overlay">
-                        <div class="project-title">Solvigo AI</div>
-                        <div class="project-year">2025</div>
+            <div class="project-grid-view">
+                <h1>Projects</h1>
+                <div class="project-grid">
+                    <div class="project-item">
+                        <a href="https://solvigo.se/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/solvigoab.jpg" alt="Solvigo">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">Solvigo AI</div>
+                            <div class="project-year">2025</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="https://kthais.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/ais.png" alt="AI Society">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">KTH AI Society</div>
+                            <div class="project-year">2025</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="https://uniteditaliansocieties.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/uis logo.png" alt="UIS">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">United Italian Society</div>
+                            <div class="project-year">2025</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="https://www.jethr.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/jethr.png" alt="Jet HR">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">Jet HR</div>
+                            <div class="project-year">2024</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="#blog" class="project-image-link">
+                            <img src="public/projects/blog.jpeg" alt="Blog">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">notebook</div>
+                            <div class="project-year">2025</div>
+                        </div>
+                    </div>
+                    <div class="project-item">
+                        <a href="#projects/solvo" class="project-image-link">
+                            <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                        </a>
+                        <div class="project-overlay">
+                            <div class="project-title">Solvo</div>
+                            <div class="project-year">2025</div>
+                        </div>
                     </div>
                 </div>
-                <div class="project-item">
-                    <img src="public/projects/ais.png" alt="AI Society">
-                    <div class="project-overlay">
-                        <div class="project-title">KTH AI Society</div>
-                        <div class="project-year">2025</div>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="public/projects/uis logo.png" alt="UIS">
-                    <div class="project-overlay">
-                        <div class="project-title">United Italian Society</div>
-                        <div class="project-year">2025</div>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="public/projects/jethr.png" alt="Jet HR">
-                    <div class="project-overlay">
-                        <div class="project-title">Jet HR</div>
-                        <div class="project-year">2024</div>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="public/projects/blog.jpeg" alt="Blog">
-                    <div class="project-overlay">
-                        <div class="project-title">notebook</div>
-                        <div class="project-year">2025</div>
-                    </div>
-                </div>
-                <div class="project-item">
-                    <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
-                    <div class="project-overlay">
-                        <div class="project-title">Solvo</div>
-                        <div class="project-year">2025</div>
-                    </div>
-                </div>
+            </div>
+            <div id="project-solvo" class="project-detail-view">
+                <p style="text-align: center;">Coming soon</p>
             </div>
         </section>
     </main>
@@ -654,14 +754,19 @@
                 // Remove # from hash
                 const path = hash.slice(1) || 'home';
 
-                // Check if this is a blog article route (blog/article-id)
+                // Check if this is a blog article route (blog/article-id) or project detail route (projects/project-id)
                 let targetId = path;
                 let articleId = null;
+                let projectId = null;
 
                 if (path.startsWith('blog/')) {
                     // Extract article ID from blog/article-id
                     targetId = 'blog';
                     articleId = path.substring(5); // Remove 'blog/' prefix
+                } else if (path.startsWith('projects/')) {
+                    // Extract project ID from projects/project-id
+                    targetId = 'projects';
+                    projectId = path.substring(9); // Remove 'projects/' prefix
                 }
 
                 const targetSection = document.getElementById(targetId);
@@ -696,6 +801,32 @@
                     } else {
                         // Show list view
                         showBlogList();
+                    }
+                }
+
+                // Handle projects section views
+                if (targetId === 'projects') {
+                    if (projectId) {
+                        // Show specific project detail view
+                        const gridView = document.querySelector('.project-grid-view');
+                        if (gridView) {
+                            gridView.classList.add('hidden');
+                        }
+                        const projectDetail = document.getElementById('project-' + projectId);
+                        if (projectDetail) {
+                            projectDetail.classList.add('active');
+                        }
+                    } else {
+                        // Show grid view
+                        const gridView = document.querySelector('.project-grid-view');
+                        if (gridView) {
+                            gridView.classList.remove('hidden');
+                        }
+                        // Hide all project detail views
+                        const projectDetails = document.querySelectorAll('.project-detail-view');
+                        projectDetails.forEach(detail => {
+                            detail.classList.remove('active');
+                        });
                     }
                 }
 
