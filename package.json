@@ -1,0 +1,8 @@
+{
+  "name": "personal-website",
+  "version": "1.0.0",
+  "description": "Federico Comel's personal website",
+  "scripts": {
+    "build": "echo 'No build needed - static HTML site'"
+  }
+}
