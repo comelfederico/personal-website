@@ -220,7 +220,6 @@
 
         .project-item {
             aspect-ratio: 1;
-            overflow: hidden;
             position: relative;
         }
 
@@ -251,7 +250,7 @@
             color: inherit;
             text-decoration: none;
             display: flex;
-            flex-direction: row;
+            flex-direction: column;
             align-items: flex-start;
             justify-content: flex-start;
             width: 100%;
@@ -270,28 +269,72 @@
             color: #666;
             font-weight: normal;
             font-style: italic;
-            transition: transform 0.3s ease;
         }
 
-        .project-title::after {
-            content: ',';
+        /* Complex hover animation for all projects */
+        .project-image-link {
+            display: block;
+            width: 100%;
+            height: 100%;
         }
 
-        .project-year {
-            font-size: 14px;
-            color: #666;
+        .project-item {
+            transition: transform 0.3s ease, z-index 0s;
+        }
+
+        .project-item .project-overlay {
+            opacity: 0;
+            pointer-events: none;
+            position: absolute;
+            left: auto;
+            right: calc(100% + 40px);
+            top: 50%;
+            bottom: auto;
+            transform: translateY(-50%);
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            justify-content: center;
+            transition: opacity 0.3s ease;
+            z-index: 100;
+        }
+
+        .project-item .project-title,
+        .project-item .project-year {
+            white-space: nowrap;
+            font-size: 13px;
+            color: #333;
             font-style: italic;
-            margin-left: 5px;
-            transition: transform 0.3s ease;
         }
 
-        .project-item:hover .project-title,
-        .project-item:hover .project-year {
-            transform: scale(1.15);
+        .project-item .project-title {
+            font-weight: bold;
+        }
+
+        .project-item .project-year {
+            margin-top: 0px;
+        }
+
+        .project-item:hover {
+            transform: scale(1.2);
+            z-index: 10;
+        }
+
+        .project-item:hover .project-overlay {
+            opacity: 1;
+        }
+
+        .project-item:hover .project-title {
+            transform: none;
         }
 
         .project-item:hover img {
             opacity: 0.9;
+        }
+
+        .project-grid:has(.project-item:hover) .project-item:not(:hover) img {
+            opacity: 0.2;
         }
 
         .project-placeholder {
@@ -612,57 +655,57 @@
                 <h1>Projects</h1>
                 <div class="project-grid">
                     <div class="project-item">
-                        <img src="public/projects/solvigoab.jpg" alt="Solvigo">
+                        <a href="https://solvigo.se/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/solvigoab.jpg" alt="Solvigo">
+                        </a>
                         <div class="project-overlay">
-                            <a href="https://solvigo.se/" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <div class="project-title">Solvigo AI</div>
-                                <div class="project-year">2025</div>
-                            </a>
+                            <div class="project-title">Solvigo AI,</div>
+                            <div class="project-year">2025</div>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="public/projects/ais.png" alt="AI Society">
+                        <a href="https://kthais.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/ais.png" alt="AI Society">
+                        </a>
                         <div class="project-overlay">
-                            <a href="https://kthais.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <div class="project-title">KTH AI Society, 2025</div>
-                                <div class="project-year">2025</div>
-                            </a>
+                            <div class="project-title">KTH AI Society,</div>
+                            <div class="project-year">2025</div>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="public/projects/uis logo.png" alt="UIS">
+                        <a href="https://uniteditaliansocieties.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/uis logo.png" alt="UIS">
+                        </a>
                         <div class="project-overlay">
-                            <a href="https://uniteditaliansocieties.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <div class="project-title">United Italian Society</div>
-                                <div class="project-year">2025</div>
-                            </a>
+                            <div class="project-title">United Italian Society,</div>
+                            <div class="project-year">2025</div>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="public/projects/jethr.png" alt="Jet HR">
+                        <a href="#blog" class="project-image-link">
+                            <img src="public/projects/blog.jpeg" alt="Blog">
+                        </a>
                         <div class="project-overlay">
-                            <a href="https://www.jethr.com/" target="_blank" rel="noopener noreferrer" class="project-link">
-                                <div class="project-title">Jet HR</div>
-                                <div class="project-year">2024</div>
-                            </a>
+                            <div class="project-title">notebook,</div>
+                            <div class="project-year">2025</div>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="public/projects/blog.jpeg" alt="Blog">
+                        <a href="#projects/solvo" class="project-image-link">
+                            <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                        </a>
                         <div class="project-overlay">
-                            <a href="#blog" class="project-link">
-                                <div class="project-title">notebook</div>
-                                <div class="project-year">2025</div>
-                            </a>
+                            <div class="project-title">Solvo,</div>
+                            <div class="project-year">2025</div>
                         </div>
                     </div>
                     <div class="project-item">
-                        <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                        <a href="https://www.jethr.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
+                            <img src="public/projects/jethr.png" alt="Jet HR">
+                        </a>
                         <div class="project-overlay">
-                            <a href="#projects/solvo" class="project-link">
-                                <div class="project-title">Solvo</div>
-                                <div class="project-year">2025</div>
-                            </a>
+                            <div class="project-title">Jet HR,</div>
+                            <div class="project-year">2024</div>
                         </div>
                     </div>
                 </div>
