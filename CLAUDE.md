@@ -23,7 +23,7 @@ This is a single-file, self-contained personal website with no external dependen
 
 **Blog System**: The blog section has two views:
 - List view (default): Shows article titles with dates, clickable to open articles
-- Article view: Shows full article with view counter stored in localStorage
+- Article view: Shows full article content
 - Navigation pattern: `#blog` for list, `#blog/article-id` for specific articles
 
 **Projects System**: The projects section displays:
@@ -92,12 +92,11 @@ Content is edited directly in `index.html`:
 
 ## JavaScript Behavior
 
-The inline JavaScript (lines ~706-880) handles:
+The inline JavaScript handles:
 - Hash-based routing with support for nested routes (`blog/article-id`, `projects/project-id`)
 - Section visibility toggling with cross-fade animations
 - Blog list/article view switching
 - Project grid/detail view switching
-- Article view counter using localStorage
 - CV link opens PDF in new tab
 - Graceful degradation (works without JavaScript via CSS `:target`)
 

@@ -6,11 +6,6 @@
     <title>Federico Comel</title>
     <link rel="icon" type="image/png" href="public/icon web.png">
 
-    <!-- Firebase SDK -->
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-analytics-compat.js"></script>
-
     <!--
     ============================================================================
     PERSONAL WEBSITE - FEDERICO COMEL
@@ -396,24 +391,6 @@
             text-decoration: underline;
         }
 
-        /* Footer left section hover effect for Easter egg counter */
-        .footer-left {
-            cursor: pointer;
-        }
-
-        .footer-name-text,
-        .footer-views-text {
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-left:hover .footer-name-text {
-            display: none;
-        }
-
-        .footer-left:hover .footer-views-text {
-            display: inline !important;
-        }
-
         /* Main content area */
         main {
             max-width: 800px;
@@ -461,6 +438,11 @@
         /* Article view title - closer to date */
         .blog-article-view h1 {
             margin-bottom: 5px;
+        }
+
+        /* Blog list view title - closer to content, matching home section */
+        .blog-list-view h1 {
+            margin-bottom: 10px;
         }
 
         h2 {
@@ -526,6 +508,15 @@
             h1 {
                 font-size: 20px;
             }
+
+            section {
+                padding-left: 20px;
+                padding-right: 20px;
+            }
+
+            .footer-name {
+                display: none;
+            }
         }
 
         /* Fallback for no-JS using :target */
@@ -551,10 +542,10 @@
         <section id="home" class="active">
             <h1>About me</h1>
             <p>
-                I'm Federico, born and raised in Cremona and trained between <a href="https://www.polimi.it/en/education/laurea-programmes/programme-detail/management-and-production-engineering" class="bio-link" target="_blank" rel="noopener noreferrer">Polimi</a> and currently <a href="https://www.kth.se/en/studies/master/technology-based-entrepreneurship/msc-technology-based-entrepreneurship-1.1177106" class="bio-link" target="_blank" rel="noopener noreferrer">KTH</a>.
+                I'm Federico. Now in Stockholm, I learned my way between <a href="https://www.polimi.it/en/education/laurea-programmes/programme-detail/management-and-production-engineering" class="bio-link" target="_blank" rel="noopener noreferrer">Polimi</a> and currently <a href="https://www.kth.se/en/studies/master/technology-based-entrepreneurship/msc-technology-based-entrepreneurship-1.1177106" class="bio-link" target="_blank" rel="noopener noreferrer">KTH</a>.
             </p>
             <p>
-                I've worked on things from AI-driven efficiency tools at <a href="https://solvigo.se/" class="bio-link" target="_blank" rel="noopener noreferrer">Solvigo</a> to operational optimization at <a href="https://www.jethr.com/" class="bio-link" target="_blank" rel="noopener noreferrer">Jet HR</a>, always with the goal in mind to make systems (and people) work smarter.
+                I've worked on things from AI tools at <a href="https://solvigo.se/" class="bio-link" target="_blank" rel="noopener noreferrer">Solvigo</a> to operations at <a href="https://www.jethr.com/" class="bio-link" target="_blank" rel="noopener noreferrer">Jet HR</a>, always with the goal in mind to make systems (and people) work smarter.
             </p>
             <p>
                 When I'm not organizing my Notion, studying, or working on some side projects, you'll probably find me cooking something unreasonably complex, running, cycling, or trying to learn how to swim properly for the Ironman.
@@ -569,8 +560,8 @@
             <!-- List View - default -->
             <div class="blog-list-view">
                 <h1>federico's notebook</h1>
-                <p class="article-title-link" onclick="showArticle('article-moving-abroad')">
-                    <span class="blog-list-date">October 20, 2025</span> &nbsp;&nbsp;&nbsp;&nbsp;My personal blueprint on how (not) to move abroad for the first time
+                <p>
+                    I moved my blog to <a href="https://federicocomel.substack.com/" target="_blank" rel="noopener noreferrer">substack</a>
                 </p>
             </div>
 
@@ -578,7 +569,7 @@
             <div id="article-moving-abroad" class="blog-article-view">
                 <h1>My personal blueprint on how (not) to move abroad for the first time</h1>
                 <div class="article-meta">
-                    October 20, 2025 • <span id="page-views-article-moving-abroad">0</span> views
+                    October 20, 2025
                 </div>
                 <p>
                     Cremona used to be home. For those who don't know it, it's a small city in the northern part of Italy, not far from Milan, something I've repeated so many times lately that it feels like part of my introduction now.
@@ -675,7 +666,7 @@
                     </div>
                     <div class="project-item">
                         <a href="https://uniteditaliansocieties.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
-                            <img src="public/projects/uis logo.png" alt="UIS">
+                            <img src="public/projects/uis-logo.png" alt="UIS">
                         </a>
                         <div class="project-overlay">
                             <div class="project-title">United Italian Society,</div>
@@ -683,7 +674,7 @@
                         </div>
                     </div>
                     <div class="project-item">
-                        <a href="#blog" class="project-image-link">
+                        <a href="https://federicocomel.substack.com/" target="_blank" rel="noopener noreferrer" class="project-image-link">
                             <img src="public/projects/blog.jpeg" alt="Blog">
                         </a>
                         <div class="project-overlay">
@@ -693,7 +684,7 @@
                     </div>
                     <div class="project-item">
                         <a href="#projects/solvo" class="project-image-link">
-                            <img src="public/projects/solvo site.jpeg" alt="Solvo Site">
+                            <img src="public/projects/solvo-site.jpeg" alt="Solvo Site">
                         </a>
                         <div class="project-overlay">
                             <div class="project-title">Solvo,</div>
@@ -718,10 +709,7 @@
     </main>
 
     <footer>
-        <div class="footer-left">
-            <span class="footer-name-text">© 2025 Federico Comel</span>
-            <span class="footer-views-text" style="display: none;"></span>
-        </div>
+        <div>© 2025<span class="footer-name"> Federico Comel</span></div>
         <div class="footer-links">
             <a href="https://www.linkedin.com/in/federico-comel/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
             <a href="mailto:federicocomel1@gmail.com">Email</a>
@@ -730,47 +718,8 @@
     </footer>
 
     <script>
-        // Firebase Configuration and Initialization
-        const firebaseConfig = {
-            apiKey: "AIzaSyDtf85kpdUn-HBA6yGipRhcXaO4XbCiQ7o",
-            authDomain: "personalwebsite-aeba1.firebaseapp.com",
-            databaseURL: "https://personalwebsite-aeba1-default-rtdb.europe-west1.firebasedatabase.app",
-            projectId: "personalwebsite-aeba1",
-            storageBucket: "personalwebsite-aeba1.firebasestorage.app",
-            messagingSenderId: "18495264311",
-            appId: "1:18495264311:web:43ecf1ee33f248018b51b2",
-            measurementId: "G-NGQJ97ZPCP"
-        };
-
-        // Initialize Firebase
-        const app = firebase.initializeApp(firebaseConfig);
-        const analytics = firebase.analytics();
-        const database = firebase.database();
-
         // Minimal vanilla JavaScript for navigation and deep-linking
         // Gracefully degrades - CSS :target provides fallback
-
-        // Function to update page views for an article using Firebase
-        function updatePageViews(articleId) {
-            // Reference to the specific article's view count in Firebase
-            const viewsRef = database.ref('/views/' + articleId);
-
-            // Use a transaction to safely increment the counter
-            viewsRef.transaction(function(currentValue) {
-                // Increment the current value (or start at 1 if null)
-                return (currentValue || 0) + 1;
-            }).then(function(result) {
-                if (result.committed) {
-                    // Update the display with the new count
-                    const viewsElement = document.getElementById('page-views-' + articleId);
-                    if (viewsElement) {
-                        viewsElement.textContent = result.snapshot.val();
-                    }
-                }
-            }).catch(function(error) {
-                console.error('Error updating page views:', error);
-            });
-        }
 
         // Function to show article view and hide list view
         function showArticle(articleId) {
@@ -791,28 +740,6 @@
             const articleViews = document.querySelectorAll('.blog-article-view');
             articleViews.forEach(article => {
                 article.classList.remove('active');
-            });
-        }
-
-        // Function to increment total site visits counter
-        function incrementTotalSiteVisits() {
-            // Reference to the total site visits counter in Firebase
-            const totalVisitsRef = database.ref('/views/totalSiteVisits');
-
-            // Use a transaction to safely increment the counter
-            totalVisitsRef.transaction(function(currentValue) {
-                // Increment the current value (or start at 1 if null)
-                return (currentValue || 0) + 1;
-            }).then(function(result) {
-                if (result.committed) {
-                    // Update the hidden footer span with the total count
-                    const footerViewsElement = document.querySelector('.footer-views-text');
-                    if (footerViewsElement) {
-                        footerViewsElement.textContent = 'Total Visits: ' + result.snapshot.val();
-                    }
-                }
-            }).catch(function(error) {
-                console.error('Error updating total site visits:', error);
             });
         }
 
@@ -870,8 +797,6 @@
                         if (article) {
                             article.classList.add('active');
                         }
-                        // Update page views for this article
-                        updatePageViews(articleId);
                     } else {
                         // Show list view
                         showBlogList();
@@ -921,8 +846,6 @@
             // Handle initial page load
             window.addEventListener('DOMContentLoaded', function() {
                 showSection(window.location.hash);
-                // Increment total site visits counter
-                incrementTotalSiteVisits();
             });
 
             // Handle CV link - open in new tab and trigger download
